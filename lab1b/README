@@ -1,0 +1,72 @@
+NAME: Konner Macias
+EMAIL: konnermacias@g.ucla.edu
+ID: 004603916
+
+SLIPDAYS: 004603916, 1
+
+=================================
+= Description of Included Files =
+=================================
+
+lab1b-server.c
+	C source module.
+	
+	Contains code for server implementation which accepts 
+	connections from a single client through a socket. A child 
+	shell process, which was forked, processes the commands and
+	outputs the result into a pipe back to server. This is then
+	sent through the socket to the client.
+	
+	Accepts the following options:
+                --port=PORTNUM
+                        to specify port used for connection
+                --compress
+                        will enable compression of all traffic in both
+                        directions
+
+lab1b-client.c
+	C source module.
+	
+	Contains code for client implementation which connects to the
+	server under a specified port number via a socket. It takes 
+	input from the terminal and sends it to the socket. Output is
+	given from the server and displayed on the terminal.
+
+	Accepts the following options:
+		--port=PORTNUM
+			to specify port used for connection
+		--log=filename
+			maintains a record of data sent over the socket
+		--compress
+			will enable compression of all traffic in both
+			directions
+
+
+Makefile
+	used to build the program and tarball
+
+	targets
+		default: build lab1b-server and lab1b-client 
+			 executables
+
+		clean: delete all files created by Makefile, and 
+		       return directory to fresh state
+	
+		dist: build distribution tarball
+
+README
+	used to provide extra information
+
+====================
+= Additional Notes =
+====================
+
+This lab delt with a lot of code, so I used modulation to allow for 
+easier debugging.
+
+In addition to working off some of my lab1a code, I needed to use the
+UNIX socket tutorial at:
+https://www.tutorialspoint.com/unix_sockets/socket_client_example.htm
+
+For zlib, I used:
+https://www.zlib.net/manual.html

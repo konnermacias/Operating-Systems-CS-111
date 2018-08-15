@@ -1,0 +1,81 @@
+NAME: Konner Macias
+EMAIL: konnermacias@g.ucla.edu
+ID: 004603916
+
+=================================
+= Description of Included Files =
+=================================
+
+lab0.c
+	C program that copies its standard input to its standard
+	output.
+	
+	Accepts the following options:
+		--input=filename
+			uses specified file as standard input
+		--ouput=filename
+			create specified file and use it as standard
+			output
+		--segfault
+			force a segmentation fault, and do not copy
+			from stdin to stdout
+		--catch
+			register a SIGSEGV handler that catches
+			segmentation fault 
+	
+
+Makefile
+	Used to build the program and tarball
+	
+	targets
+		default: build lab0 executable
+		
+		check: runs a quick smoke-test to check if program
+		       works, supports the required arguments, and
+		       and properly reports success or failure
+		
+		clean: delete all files created by Makefile, and 
+		       return directory to fresh state
+
+		dist: build distribution tarball
+
+backtrace.png
+	image depicting a segfault and associated stack-trace
+
+breakpoint.png
+	image depicting a breakpoint and variable inspection
+
+README
+	used to provide extra information
+
+
+====================================
+= Smoke-test cases in check target =
+====================================
+
+testSucess:
+	check for errors handling --input and --output options. Also,
+	check if input and output contents are not the same.
+
+testInvalidArg:
+	check for errors handling unrecognized arguments.
+
+testCatch:
+	check if the program does not catch the segmentation fault.
+
+testInput:
+	check for errors handling non-existant or unreadable input
+	files.
+
+testCreat:
+	check for errors handling uncreatable output files.
+
+=====================
+= My Personal Input =
+=====================
+
+I used the man pages, and several online tutorials to remind myself 
+in creating a Makefile and writing scripting code.
+
+I also used the tutorial in input/output redirection to help with 
+writing lab0.c.

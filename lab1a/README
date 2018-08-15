@@ -1,0 +1,53 @@
+NAME: Konner Macias
+EMAIL: konnermacias@g.ucla.edu
+ID: 004603916
+
+SLIPDAYS: 004603916, 1
+
+=================================
+= Description of Included Files =
+=================================
+
+lab1a.c
+	C source module.
+	
+	Accepts the following options:
+		--shell
+			extends program to pass input/output between
+			the terminal and a shell
+		--debug
+			used to help with the debugging process
+
+Makefile
+	used to build the program and tarball
+
+	targets
+		default: build lab1a executable
+
+		clean: delete all files created by Makefile, and 
+		       return directory to fresh state
+	
+		dist: build distribution tarball
+
+README
+	used to provide extra information
+
+===============
+= Limitations =
+===============
+
+I had passed all the tests via the sanity check script except for the
+one checking if SIGINT was reported. Following a post on piazza, I 
+edited the script file to say SEND '^C\r' instead of SEND '^C'. This 
+made me pass all tests.
+
+
+==================
+= Other Comments =
+==================
+
+I personally did my debugging gradually as I worked on the assignment.
+Though I accept the debug option, it doens't do much as I was able to
+already solve a lot of my program issues. Also, it was not specified
+in the grading rubric so I feel alright with this decision for now. 
+

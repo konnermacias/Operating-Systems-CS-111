@@ -1,0 +1,31 @@
+NAME: Konner Macias
+EMAIL: konnermacias@g.ucla.edu
+ID: 004603916
+
+Serial number of Beaglebone: BBGW17100708
+
+Wifi MAC address: 2c:f7:f1:06:6e:6c
+
+my_beaglebone.jpg
+	Image of me holding my assembled Beaglebone.
+
+connected.png
+	Screen shot from a USB terminal command session connected to
+	my system showing that I gave it a name and configured
+	network access.
+
+copy.png
+	Screen shot from a local session in which I copied a hello
+	world program from my laptop to my Beaglebone.
+
+build_run.png
+	Screen shot form a WIFI SSH session in which I built and ran
+	a trivial hello world program.
+
+git.png
+	Screen shot from a WIFI SSH session in which I install git and
+	clone a repository.
+
+README
+	File for additional information on the other files within the
+	tarball.

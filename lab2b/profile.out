@@ -1,0 +1,127 @@
+Total: 370 samples
+     346  93.5%  93.5%      370 100.0% tFunc
+      20   5.4%  98.9%       23   6.2% SortedList_insert
+       4   1.1% 100.0%        4   1.1% __strcmp_sse42
+       0   0.0% 100.0%        1   0.3% SortedList_lookup
+       0   0.0% 100.0%      370 100.0% __clone
+       0   0.0% 100.0%      370 100.0% start_thread
+ROUTINE ====================== tFunc in /u/eng/class/classkon/Documents/CS_111/lab2B/lab2_list.c
+   346    370 Total samples (flat / cumulative)
+     .      .   29: typedef enum locks {NONE, MUTEX, SPIN} LOCK;
+     .      .   30: LOCK myLock = NONE;
+     .      .   31: int spinLock = 0;
+     .      .   32: 
+     .      .   33: /* to be called with pthread_create */
+---
+     .      .   34: void * tFunc(void *args){
+     .      .   35: 	int tid = *(int *) args;
+     .      .   36: 	SortedListElement_t *temp;
+     .      .   37: 	int i, rc;
+     .      .   38: 
+     .      .   39: 	/* Lock it up! */
+     .      .   40: 	if (myLock ==  MUTEX){
+     .      .   41: 		pthread_mutex_lock(&addLock);
+     .      .   42: 	}
+     .      .   43: 	if (myLock == SPIN){
+   344    344   44: 		while(__sync_lock_test_and_set(&spinLock,1));
+     .      .   45: 	}
+     .      .   46: 
+     .      .   47: 
+     .      .   48: 	for (i = tid; i < num_elms; i += numThreads){
+     1     24   49: 		SortedList_insert(list, elms[i]);
+     .      .   50: 	}
+     .      .   51: 
+     .      .   52: 	if (SortedList_length(list) == -1){
+     .      .   53: 		fprintf(stderr, "Error! Corrupted list length\n");
+     .      .   54: 		exit(2);
+     .      .   55: 	}
+     .      .   56: 	
+     1      1   57: 	for (i = tid; i < num_elms; i += numThreads){
+     .      1   58: 		temp = SortedList_lookup(list, elms[i]->key);
+     .      .   59: 		if (temp == NULL){
+     .      .   60: 			fprintf(stderr, "Error using SortedList_lookup\n");
+     .      .   61: 			exit(2);
+     .      .   62: 		}
+     .      .   63: 
+     .      .   64: 		rc = SortedList_delete(temp);
+     .      .   65: 		if (rc){
+     .      .   66: 			fprintf(stderr, "Error using SortedList_delete\n");
+     .      .   67: 			exit(2);
+     .      .   68: 		}
+     .      .   69: 	}
+     .      .   70: 
+     .      .   71: 	/* unlock that */
+     .      .   72: 	if (myLock ==  MUTEX){
+     .      .   73: 		pthread_mutex_unlock(&addLock);
+     .      .   74: 	}
+     .      .   75: 	if (myLock == SPIN){
+     .      .   76: 		__sync_lock_release(&spinLock);
+     .      .   77: 	}
+     .      .   78: 
+     .      .   79: 	pthread_exit(NULL);
+---
+     .      .   80: }
+     .      .   81: 
+     .      .   82: 
+     .      .   83: void sighandler(int signum) {
+     .      .   84: 	if (signum == SIGSEGV){
+ROUTINE ====================== tFunc in /u/eng/class/classkon/Documents/CS_111/lab2B/lab2_list.c
+   346    370 Total samples (flat / cumulative)
+     .      .   29: typedef enum locks {NONE, MUTEX, SPIN} LOCK;
+     .      .   30: LOCK myLock = NONE;
+     .      .   31: int spinLock = 0;
+     .      .   32: 
+     .      .   33: /* to be called with pthread_create */
+---
+     .      .   34: void * tFunc(void *args){
+     .      .   35: 	int tid = *(int *) args;
+     .      .   36: 	SortedListElement_t *temp;
+     .      .   37: 	int i, rc;
+     .      .   38: 
+     .      .   39: 	/* Lock it up! */
+     .      .   40: 	if (myLock ==  MUTEX){
+     .      .   41: 		pthread_mutex_lock(&addLock);
+     .      .   42: 	}
+     .      .   43: 	if (myLock == SPIN){
+   344    344   44: 		while(__sync_lock_test_and_set(&spinLock,1));
+     .      .   45: 	}
+     .      .   46: 
+     .      .   47: 
+     .      .   48: 	for (i = tid; i < num_elms; i += numThreads){
+     1     24   49: 		SortedList_insert(list, elms[i]);
+     .      .   50: 	}
+     .      .   51: 
+     .      .   52: 	if (SortedList_length(list) == -1){
+     .      .   53: 		fprintf(stderr, "Error! Corrupted list length\n");
+     .      .   54: 		exit(2);
+     .      .   55: 	}
+     .      .   56: 	
+     1      1   57: 	for (i = tid; i < num_elms; i += numThreads){
+     .      1   58: 		temp = SortedList_lookup(list, elms[i]->key);
+     .      .   59: 		if (temp == NULL){
+     .      .   60: 			fprintf(stderr, "Error using SortedList_lookup\n");
+     .      .   61: 			exit(2);
+     .      .   62: 		}
+     .      .   63: 
+     .      .   64: 		rc = SortedList_delete(temp);
+     .      .   65: 		if (rc){
+     .      .   66: 			fprintf(stderr, "Error using SortedList_delete\n");
+     .      .   67: 			exit(2);
+     .      .   68: 		}
+     .      .   69: 	}
+     .      .   70: 
+     .      .   71: 	/* unlock that */
+     .      .   72: 	if (myLock ==  MUTEX){
+     .      .   73: 		pthread_mutex_unlock(&addLock);
+     .      .   74: 	}
+     .      .   75: 	if (myLock == SPIN){
+     .      .   76: 		__sync_lock_release(&spinLock);
+     .      .   77: 	}
+     .      .   78: 
+     .      .   79: 	pthread_exit(NULL);
+---
+     .      .   80: }
+     .      .   81: 
+     .      .   82: 
+     .      .   83: void sighandler(int signum) {
+     .      .   84: 	if (signum == SIGSEGV){

@@ -1,0 +1,62 @@
+NAME: Konner Macias
+EMAIL: konnermacias@g.ucla.edu
+ID: 004603916
+
+====================
+== Included Files ==
+====================
+
+lab4c_tcp.c
+	C source file that opens a TCP connection to the server at the
+	specified address and port then immediately sends an ID over
+	the connection. It also sends temperature reports.
+
+	
+
+	Correct Usage: ./lab4c_tcp portnumber --id=9-digit-ID-number
+			 --log=log_file --host=address [--scale=CF]
+			 [--period=num_seconds]
+
+
+lab4c_tls.c
+	C source file that opens a TLS to the server at the specified
+	address and port. This is based on the remote logging
+	from building lab4c_tcp. It also sends an ID and temperature
+	reports over the connection.
+
+	Correct Usage: ./lab4c_tls portnumber --id=9-digit-ID-number 
+                         --log=log_file --host=address [--scale=CF] 
+                         [--period=num_seconds]
+
+	
+Makefile
+	Used to build and test the program. Please note that this
+	Makefile is intended to be executed on a BeagleBone.
+
+	Targets:
+		default:
+			builds both lab4c_tcp and lab4c_tls
+		clean:
+			deletes all programs and output created by
+			the Makefile and restores the directory to 
+			its freshly untarred state.
+		dist:
+			creates deliverable tarball.
+
+README
+	Text file that contains descriptions of included files and 
+	comments about the project.
+
+==============
+== Comments ==
+==============
+
+I unfortunately had a tough time dealing with connection once again.
+I had used my personal wifi, but was unable to run:
+
+$ sudo apt-get update
+
+After going through numerous online sites trying to fix the issue, I
+finally was able to complete the command and install openssl.
+
+
